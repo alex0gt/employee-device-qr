@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Device Access List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f0f8ff;
+    }
+    table {
+      width: 80%;
+      margin: auto;
+      border-collapse: collapse;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #007acc;
+      color: white;
+    }
+    a {
+      text-decoration: none;
+      color: #007acc;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align:center;">📱 Employee Device Access List</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Mobile</th>
+        <th>QR / View</th>
+      </tr>
+    </thead>
+    <tbody id="employee-table">
+      <!-- Data will come from JS -->
+    </tbody>
+  </table>
+
+  <script>
+    fetch('data.json')
+      .then(res => res.json())
+      .then(data => {
+        const table = document.getElementById("employee-table");
+        data.forEach(emp => {
+          const row = `
+            <tr>
+              <td>${emp.id}</td>
+              <td>${emp.name}</td>
+              <td>${emp.mobile}</td>
+              <td><a href="employee.html?id=${emp.id}" target="_blank">🔗 View</a></td>
+            </tr>`;
+          table.innerHTML += row;
+        });
+      });
+  </script>
+</body>
+</html>
