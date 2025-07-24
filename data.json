@@ -1,0 +1,17 @@
+[
+  {
+    "id": "emp001",
+    "name": "Ravi Patel",
+    "mobile": "9876543210"
+  },
+  {
+    "id": "emp002",
+    "name": "Aarti Sharma",
+    "mobile": "9123456789"
+  },
+  {
+    "id": "emp003",
+    "name": "Manish Mehta",
+    "mobile": "9012345678"
+  }
+]
