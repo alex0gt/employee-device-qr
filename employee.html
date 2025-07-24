@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Device Access Status</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f4f4f4;
+      color: #333;
+      text-align: center;
+    }
+    .status {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .info {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="status" id="status">Loading...</div>
+  <div class="info">
+    <p><strong>Name:</strong> <span id="name">-</span></p>
+    <p><strong>Mobile:</strong> <span id="mobile">-</span></p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    fetch('data.json')
+      .then(response => response.json())
+      .then(data => {
+        const emp = data.find(e => e.id === id);
+        if (emp) {
+          document.getElementById("status").innerText = "✅ Allowed Device";
+          document.getElementById("name").innerText = emp.name;
+          document.getElementById("mobile").innerText = emp.mobile;
+        } else {
+          document.getElementById("status").innerText = "❌ Access Denied";
+          document.getElementById("name").innerText = "-";
+          document.getElementById("mobile").innerText = "-";
+        }
+      })
+      .catch(error => {
+        document.getElementById("status").innerText = "⚠️ Error loading data.";
+      });
+  </script>
+</body>
+</html>
